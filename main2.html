@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Tone Analyzer - Upload Image</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f4f4f9;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        .container {
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 50px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .upload-container {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .upload-container h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .upload-container p {
+            font-size: 1.2rem;
+            color: red;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #ff7f50;
+            border-color: #ff7f50;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #ff5722;
+            border-color: #ff5722;
+        }
+
+        .color-palette {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .color-box {
+            flex: 1 1 calc(25% - 20px);
+            text-align: center;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .color-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .color-code,
+        .color-name {
+            color: #fff;
+            font-size: 1.2rem;
+        }
+
+        .color-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .color-code {
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card {
+            border: none;
+        }
+
+        .card-body {
+            text-align: center;
+        }
+
+        hr {
+            border-top: 2px solid #ddd;
+            margin: 40px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Skin Tone Analyzer</h1>
+
+        <div class="upload-container">
+            <h3>Upload or Capture an Image for Analysis</h3>
+            <p>{% if error %}{{ error }}{% endif %}</p>
+            <form method="POST" enctype="multipart/form-data" id="upload-form">
+                <div class="mb-3">
+                    <label for="image" class="form-label">Choose an image</label>
+                    <input type="file" class="form-control" name="image" id="image-input" accept="image/*">
+                </div>
+                <div class="mb-3 text-center">
+                    <button type="button" class="btn btn-secondary btn-lg" id="open-camera">Open Camera</button>
+                </div>
+                <video id="camera-stream" autoplay playsinline style="display: none; width: 100%; border-radius: 8px;"></video>
+                <canvas id="snapshot" style="display: none;"></canvas>
+                <button type="button" class="btn btn-success btn-lg mt-3" id="capture-button" style="display: none;">Capture Image</button>
+                <input type="hidden" name="captured-image" id="captured-image">
+                <br>
+                <br>
+                <button type="submit" class="btn btn-primary btn-lg w-100">Analyze Image</button>
+            </form>
+        </div>
+        
+        <script>
+            const cameraStream = document.getElementById("camera-stream");
+            const snapshot = document.getElementById("snapshot");
+            const captureButton = document.getElementById("capture-button");
+            const openCameraButton = document.getElementById("open-camera");
+            const capturedImageInput = document.getElementById("captured-image");
+        
+            let stream;
+        
+            // Open Camera
+            openCameraButton.addEventListener("click", async () => {
+                try {
+                    stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                    cameraStream.srcObject = stream;
+                    cameraStream.style.display = "block";
+                    captureButton.style.display = "block";
+                } catch (err) {
+                    alert("Camera access denied or unavailable.");
+                }
+            });
+        
+            captureButton.addEventListener("click", () => {
+                const maxWidth = 800; // Set maximum width
+                const maxHeight = 800; // Set maximum height
+                const context = snapshot.getContext("2d");
+            
+                // Calculate the new dimensions
+                let width = cameraStream.videoWidth;
+                let height = cameraStream.videoHeight;
+                if (width > height) {
+                    if (width > maxWidth) {
+                        height = Math.floor((maxWidth / width) * height);
+                        width = maxWidth;
+                    }
+                } else {
+                    if (height > maxHeight) {
+                        width = Math.floor((maxHeight / height) * width);
+                        height = maxHeight;
+                    }
+                }
+            
+                snapshot.width = width;
+                snapshot.height = height;
+                context.drawImage(cameraStream, 0, 0, width, height);
+            
+                const imageData = snapshot.toDataURL("image/jpeg", 0.7); // Compress as JPEG with 70% quality
+                capturedImageInput.value = imageData;
+                cameraStream.style.display = "none";
+                captureButton.style.display = "none";
+            
+                if (stream) {
+                    stream.getTracks().forEach((track) => track.stop()); // Stop the camera
+                }
+            });
+            
+        </script>
+        
+
+        {% if skin_tone %}
+        <hr>
+        <h3 class="text-center">Skin Tone Analysis Results:</h3>
+        <p class="text-center"><strong>Skin Tone: </strong>rgb {{ skin_tone }}</p>
+        <p class="text-center"><strong>Palette Name: </strong>{{ palette_name }}</p>
+
+        <h4 class="text-center">Recommended Dress Colors:</h4>
+        <div class="color-palette">
+            {% for color, name in recommendations %}
+            <div class="color-box" style="background-color: {{ color }};">
+                <div class="card-body">
+                    <span class="color-code">{{ color }}</span>
+                    <h5 class="color-name">{{ name }}</h5>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

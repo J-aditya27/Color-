@@ -1,0 +1,23 @@
+.warm {
+    background-image: url(project\static\uploads\warm.jpeg);
+    margin: 20px;
+    padding: 20px;
+    height: 200px;
+    width: 100px;
+}
+
+.cool {
+    background-image: url(project\static\uploads\cool.jpeg);
+    margin: 20px;
+    padding: 20px;
+    height: 200px;
+    width: 100px;
+}
+
+.neutral {
+    background-image: url(project\static\uploads\neutral.jpeg);
+    margin: 20px;
+    padding: 20px;
+    height: 200px;
+    width: 100px;
+}

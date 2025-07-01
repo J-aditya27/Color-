@@ -1,0 +1,85 @@
+/* Body and container styles */
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    max-width: 900px;
+    margin-top: 50px;
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Heading style */
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+
+/* Video container */
+
+.video-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#video {
+    width: 100%;
+    border-radius: 10px;
+    max-width: 400px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Preview image */
+
+.preview-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#snapshot {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Button styling */
+
+#capture,
+#analyze {
+    width: 100%;
+    max-width: 200px;
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* Result styling */
+
+#result {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.color_wheels {
+    background-image: url(project\static\uploads\wheel.jpeg);
+    margin: 50px;
+    padding: 50px;
+    height: 300px;
+    width: 250px;
+    position: absolute;
+}

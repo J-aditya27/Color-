@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Analysis Results</title>
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f4f9;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        .container {
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 50px;
+            max-width: 800px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .img-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .img-container img {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .result-section {
+            margin-bottom: 30px;
+        }
+
+        .result-section h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .recommendation-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .recommendation-list li {
+            background-color: #f1f1f1;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .recommendation-list li span {
+            font-weight: bold;
+        }
+
+        .btn-back {
+            margin-top: 30px;
+            width: 100%;
+            padding: 15px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            background-color: #ff7f50;
+            border-color: #ff7f50;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background-color: #ff5722;
+            border-color: #ff5722;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Skin Analysis Results</h2>
+
+        <!-- Display Image -->
+        <div class="img-container">
+            <img src="{{ image_url }}" alt="Uploaded Image">
+        </div>
+
+        <!-- Analysis Section -->
+        <div class="result-section">
+            <h3>Analysis:</h3>
+            <ul class="list-group">
+                <li class="list-group-item">Redness: <span class="font-weight-bold">{{ redness_level }}</span></li>
+                <li class="list-group-item">Dryness: <span class="font-weight-bold">{{ dryness_level }}</span></li>
+                <li class="list-group-item">Pimples: <span class="font-weight-bold">{{ pimple_level }}</span></li>
+            </ul>
+        </div>
+
+        <!-- Recommendations Section -->
+        <div class="result-section">
+            <h3>Recommendations:</h3>
+            <!-- Redness -->
+            <div>
+                <h4>Redness:</h4>
+                <ul class="recommendation-list">
+                    {% for item in recommendations.redness.products %}
+                    <li><span>{{ item.name }}</span> ({{ item.type }})</li>
+                    {% endfor %}
+                    {% for med in recommendations.redness.medications %}
+                    <li><span>{{ med.name }}</span> - {{ med.usage }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Dryness -->
+            <div>
+                <h4>Dryness:</h4>
+                <ul class="recommendation-list">
+                    {% for item in recommendations.dryness.products %}
+                    <li><span>{{ item.name }}</span> ({{ item.type }})</li>
+                    {% endfor %}
+                    {% for med in recommendations.dryness.medications %}
+                    <li><span>{{ med.name }}</span> - {{ med.usage }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Pimples -->
+            <div>
+                <h4>Pimples:</h4>
+                <ul class="recommendation-list">
+                    {% for item in recommendations.pimples.products %}
+                    <li><span>{{ item.name }}</span> ({{ item.type }})</li>
+                    {% endfor %}
+                    {% for med in recommendations.pimples.medications %}
+                    <li><span>{{ med.name }}</span> - {{ med.usage }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <a href="/skincare" class="btn btn-secondary btn-back">Back to Upload</a>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

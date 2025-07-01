@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Tone Analyzer</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom Styles */
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .hero {
+            background-image: url('https://images.unsplash.com/photo-1603370928866-e15805756740?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+        }
+        
+        .btn-light-custom {
+            background-color: #ff7f50;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.25rem;
+            border-radius: 50px;
+            border: none;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-light-custom:hover {
+            background-color: #fc378dd4;
+        }
+        
+        .card-custom {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card-custom:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+        }
+        
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .service-icon {
+            font-size: 4rem;
+            color: #ff5090;
+        }
+        
+        .card-body p {
+            font-size: 1rem;
+        }
+        /* Adding gradient background to sections */
+        
+        .section-bg {
+            background: linear-gradient(45deg, #ff7f50, #ffcc00);
+            padding: 50px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Face Tone Analyzer</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tools">Technologies</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/main2">Get Started</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/skincare">Skincare Tips</a></li>
+
+                    <!-- Link to Skincare Page -->
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero text-center text-white">
+        <div class="container">
+            <h1>Welcome to Face Tone Analyzer</h1>
+            <p>Discover your perfect color palette and improve your skin health!</p>
+            <a href="/main2" class="btn btn-light-custom">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-bg text-center py-5">
+        <div class="container">
+            <h2 class="mb-4 text-white">Our Services</h2>
+            <div class="row">
+                <!-- Service 1 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card card-custom shadow p-3 border-0">
+                        <div class="card-body">
+                            <i class="service-icon fas fa-camera-retro"></i>
+                            <h5 class="card-title mt-3">Face Detection</h5>
+                            <p class="card-text">Upload an image, and we accurately detect faces using advanced AI models.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Service 2 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card card-custom shadow p-3 border-0">
+                        <div class="card-body">
+                            <i class="service-icon fas fa-palette"></i>
+                            <h5 class="card-title mt-3">Skin Tone Analysis</h5>
+                            <p class="card-text">Analyze your skin undertone to identify whether it's warm, cool, or neutral.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Service 3 -->
+                <div class="col-md-4 mb-4">
+                    <div class="card card-custom shadow p-3 border-0">
+                        <div class="card-body">
+                            <i class="service-icon fas fa-paint-brush"></i>
+                            <h5 class="card-title mt-3">Color Recommendations</h5>
+                            <p class="card-text">Get personalized color recommendations for fashion and makeup based on your skin tone.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="py-5">
+        <div class="container text-center">
+            <h2 class="mb-4">Technologies We Use</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <i class="bi bi-camera-reels fs-1 text-primary"></i>
+                    <h5 class="mt-3">OpenCV</h5>
+                    <p>For real-time face detection and image processing.</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="bi bi-diagram-3 fs-1 text-primary"></i>
+                    <h5 class="mt-3">Python</h5>
+                    <p>Our backbone programming language for machine learning and AI models.</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="bi bi-bootstrap fs-1 text-primary"></i>
+                    <h5 class="mt-3">Bootstrap</h5>
+                    <p>To create responsive and user-friendly web designs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Chatbot UI -->
+    <div id="chatbot-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+        <button id="chatbot-toggle" class="btn btn-primary rounded-circle shadow-lg" style="width: 60px; height: 60px; font-size: 24px;">
+            💬
+        </button>
+        <div id="chatbot-window" class="card border-0 shadow-lg" style="display: none; width: 350px; height: 500px; border-radius: 15px; overflow: hidden;">
+            <!-- Chatbot Header -->
+            <div class="card-header text-white bg-gradient-primary d-flex justify-content-between align-items-center p-3">
+                <h5 class="mb-0">Chat Assistant</h5>
+                <button id="chatbot-close" class="btn btn-sm btn-light">X</button>
+            </div>
+
+            <!-- Chat Content -->
+            <div id="chat-content" class="card-body" style="overflow-y: auto; height: 360px; background-color: #f8f9fa; padding: 15px;">
+                <!-- Dynamic messages will be appended here -->
+            </div>
+
+            <!-- Chat Input -->
+            <div class="card-footer bg-light">
+                <form id="chat-form" class="d-flex">
+                    <input type="text" id="user-input" class="form-control rounded-pill me-2" placeholder="Type your message..." autocomplete="off" style="flex-grow: 1;">
+                    <button type="submit" class="btn btn-primary rounded-circle shadow" style="width: 50px; height: 50px; font-size: 20px;">
+                        ➤
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Styles for advanced UI -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .bg-gradient-primary {
+            background: linear-gradient(90deg, #007bff, #0056b3);
+        }
+        
+        #chat-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        #chat-content::-webkit-scrollbar-thumb {
+            background: #007bff;
+            border-radius: 5px;
+        }
+        
+        #chat-content::-webkit-scrollbar-thumb:hover {
+            background: #0056b3;
+        }
+        
+        #chatbot-container button:focus {
+            outline: none;
+        }
+        
+        .chat-message {
+            margin-bottom: 15px;
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            word-wrap: break-word;
+        }
+        
+        .chat-message.bot {
+            background-color: #e9ecef;
+            color: #333;
+            align-self: flex-start;
+            border-radius: 15px 15px 15px 0;
+        }
+        
+        .chat-message.user {
+            background-color: #007bff;
+            color: white;
+            align-self: flex-end;
+            border-radius: 15px 15px 0 15px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const toggleButton = document.getElementById("chatbot-toggle");
+            const closeButton = document.getElementById("chatbot-close");
+            const chatbotWindow = document.getElementById("chatbot-window");
+            const chatContent = document.getElementById("chat-content");
+            const chatForm = document.getElementById("chat-form");
+            const userInput = document.getElementById("user-input");
+
+            // Toggle Chatbot Visibility
+            toggleButton.addEventListener("click", () => {
+                chatbotWindow.style.display = chatbotWindow.style.display === "none" ? "block" : "none";
+            });
+
+            closeButton.addEventListener("click", () => {
+                chatbotWindow.style.display = "none";
+            });
+
+            // Append Messages to Chat Content
+            const appendMessage = (sender, message) => {
+                const messageDiv = document.createElement("div");
+                messageDiv.className = `chat-message ${sender}`;
+                messageDiv.innerText = message;
+                chatContent.appendChild(messageDiv);
+
+                // Scroll to the latest message
+                chatContent.scrollTop = chatContent.scrollHeight;
+            };
+
+            // Handle Form Submission
+            chatForm.addEventListener("submit", async(e) => {
+                e.preventDefault();
+                const message = userInput.value.trim();
+                if (message) {
+                    // Append user message
+                    appendMessage("user", message);
+
+                    // Clear input field
+                    userInput.value = "";
+
+                    // Simulate chatbot reply
+                    const response = await fetch("/chatbot", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            message
+                        })
+                    });
+
+                    const data = await response.json();
+                    appendMessage("bot", data.reply);
+                }
+            });
+        });
+    </script>
+
+
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2024 Face Tone Analyzer. All rights reserved.</p>
+            <div>
+                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-square fa-2x"></i></a>
+                <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter-square fa-2x mx-3"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram-square fa-2x"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
